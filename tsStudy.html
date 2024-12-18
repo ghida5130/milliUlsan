@@ -1,0 +1,46 @@
+<!-- 
+    ! 타입스크립트는 기본적으로 변수/배열 등 생성시 자동으로 타입을 지정해 변수 재사용시 타입에러를 막아준다. 명시하지 않아도 기본 동작은 함
+    # 커스텀 type명을 만들때는 주로 앞글자를 대문자로 둔다.
+        ex) type Name = string | number;
+    # 함수에 타입 지정하기
+        - function 함수(x:number):number { return x } // <= 파라미터 뒤 :number부분이 반환값의 타입을 지정해준다.
+    # 배열, 객체에 튜플 속성 사용하기
+        - type Member = [string, boolean] 일때 let john:Member = ["name", true]; 형식으로만 생성 가능하다.
+        - 주로 value와 그 속성을 나타낼때 사용하기 좋다.
+    # 객체값 전체에 속성 일괄 부여하기
+        - type Member = { [key :string] : string } 형식의 타입을 사용하면 객체의 모든 key, value값으로 string만을 사용해야한다.
+    # class값에 속성 사용하기
+        - class User { name :string; constructor(name :string){this.name = name}}
+        - 함수와 비슷하게 속성을 부여하지만 미리 name에 타입을 부여하고 사용하는 차이점이 있다.
+
+    # 타입스크립트의 타입 종류
+        - 기본 타입 : string, number, boolean, null, undefined
+        - Union타입 : or 기호를 사용해 여러 타입의 선택지를 줄 수 있다. 그러나 특정값을 할당하면 하나로 확정이 된다.
+            ex) number | string 로 타입을 지정하면 둘중 하나를 사용할 수 있지만 123 등의 숫자가 한번 할당되면 number타입으로 고정된다.
+        - 배열, 객체에도 마찬가지이지만 사용방법에 주의해야한다.
+            ex) (number | string)[] : 둘중 하나가 들어올수 있는 배열을 뜻하며 일반변수 or처럼 타입이 고정되지는 않는다.
+            ex) number | string[] : 숫자 변수 혹은 문자열로 이루어진 배열 둘중 하나가 옴을 의미한다. 이때는 할당시 타입이 고정된다.
+            ex) { a : string | number } : 마찬가지로 a키값의 value로는 string 혹은 number중 하나여야한다.
+        - any 타입은 어떤 형식이 와도 상관없으며 할당이 이루어져도 type이 고정되지않고 any타입이 유지된다. typescript의 특성을 빼고 만들고 싶을때 사용한다.
+        - unknown 타입은 any 타입과 비슷하지만 다른 변수에 할당될때 차이가 발생한다. (조금 더 안전함)
+            ex) name변수가 any타입이고 name = "이름"으로 할당했을때 let age :number = name 으로 초기화해도 정상작동한다. any변수는 어떤내용물이 들어와도 any타입으로 남아 ts의 타입검사 기능을 무력화 하기 때문
+            ex) 그러나 name변수가 unknown타입이고 name = "이름" 으로 할당했을때 let age :number = name 으로 초기화하면 오류가 발생한다. unknown은 변수초기화에는 자유롭지만 다른 변수초기화에 이용될때는 타입이 검사된다.
+            ex) 이외 숫자연산등 타입일치가 엄격한 곳에서도 any는 모든것이 허용되는 반면 unknown은 허용되지않는다.
+        * 기타 타입 관련 정보
+            - string + 1은 가능하고 ("abc" + 1의 결과는 "abc1"임) number + 1도 가능하지만 string | number + 1은 불가능하다. Union 타입은 사용자정의 타입으로 ts의 엄격한 타입환경에서는 사용할 수 없다.
+        
+    # 함수의 매개변수와 반환값 관련 타입
+        - 함수가 return값이 없을때 void타입을 지정해주면 실수로 리턴값이 발생될때 오류가 발생하도록 할 수 있다.
+            ex) function name(x :number) :void {}
+        - ts는 함수사용시 파라미터를 넣지않으면 기본적으로는 오류가 발생한다. 파라미터의 유무를 유연하게 받으려면 ? 를 사용한다.
+            ex) function name(x? :number) :void {}
+            * 위의 x? :number 는 x :number|undefined 와 같은 기능을 한다.
+
+    # 타입 내로잉(Narrowing)과 타입 단언(Assertion)
+        - Narrowing : 변수 타입의 범위를 좁혀서 ts가 여러가지 연산을 진행할수 있도록 한다.
+            ex) if (typeof age === "number") 이 조건문에서 만약 age의 타입이 number | string 이었을 경우 number 타입으로 범위를 좁혀 수학연산 등을 실행할 수 있게된다.
+        - Assertion : 마찬가지로 변수 타입의 범위를 좁히지만 특정 변수에 직접 작성한다.
+            ex) Angle-bracket : name 변수의 타입이 any 일경우 <string>name.length로 작성하면 string으로 타입의 범위가 좁혀져 length를 사용할 수 있게 된다.
+            ex) as : 위와 같은상황에 (name as string).length로 사용할 수 있다.
+
+ -->
