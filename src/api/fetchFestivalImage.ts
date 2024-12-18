@@ -7,7 +7,7 @@ interface FestivalImageTypes {
 
 export const FetchFestivalImage = async (unqId: number): Promise<FestivalImageTypes> => {
     const { data } = await axios.get<FestivalImageTypes>(
-        `http://192.168.1.161:8080/api/ulsanFestivalImage?unqId=${unqId}`
+        `http://175.215.254.39:5000/api/ulsanFestivalImage?unqId=${unqId}`
     );
     return data;
 };

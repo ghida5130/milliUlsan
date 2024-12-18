@@ -4,7 +4,7 @@ import axios from "axios";
 type OpenWeatherType = Record<string, any>;
 
 const OpenWeatherData = async () => {
-    const { data } = await axios.get<OpenWeatherType>(`http://192.168.1.161:8080/api/openWeather`);
+    const { data } = await axios.get<OpenWeatherType>(`http://175.215.254.39:5000/api/openWeather`);
     return data;
 };
 

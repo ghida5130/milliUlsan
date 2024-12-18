@@ -17,7 +17,7 @@ const FetchMedicalData = async ({
     category = "병원",
 }: FetchMedicalDataProps): Promise<MedicalDataResponse> => {
     const { data } = await axios.get<MedicalDataResponse>(
-        `http://192.168.1.161:8080/api/ulsanMedical?city=${city}&category=${category}`
+        `http://175.215.254.39:5000/api/ulsanMedical?city=${city}&category=${category}`
     );
     return data;
 };

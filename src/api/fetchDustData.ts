@@ -4,7 +4,7 @@ import axios from "axios";
 type DustType = Record<string, string>;
 
 const DustData = async () => {
-    const { data } = await axios.get<DustType>(`http://192.168.1.161:8080/api/airkorea/dust`);
+    const { data } = await axios.get<DustType>(`http://175.215.254.39:5000/api/airkorea/dust`);
     return data;
 };
 
