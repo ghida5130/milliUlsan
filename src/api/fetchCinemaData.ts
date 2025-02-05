@@ -13,9 +13,8 @@ type CinemaDataResponse = CinemaDataProps[];
 
 const FetchCinemaData = async ({ city = "북구" }: FetchCinemaDataProps): Promise<CinemaDataResponse> => {
     const { data } = await axios.get<CinemaDataResponse>(
-        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/ulsanCinema?city=${city}`
+        `${process.env.REACT_APP_SERVER_URL}/api/ulsanCinema?city=${city}`
     );
-    console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}`);
     return data;
 };
 

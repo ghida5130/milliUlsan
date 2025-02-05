@@ -4,9 +4,7 @@ import axios from "axios";
 type DustType = Record<string, string>;
 
 const DustData = async () => {
-    const { data } = await axios.get<DustType>(
-        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/airkorea/dust`
-    );
+    const { data } = await axios.get<DustType>(`${process.env.REACT_APP_SERVER_URL}/api/airkorea/dust`);
     return data;
 };
 

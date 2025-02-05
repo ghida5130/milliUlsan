@@ -12,7 +12,7 @@ interface FestivalData {
 
 const FetchFestivalData = async (nowMonth: number): Promise<FestivalDataProps> => {
     const { data } = await axios.get<FestivalDataProps>(
-        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/ulsanFestival?nowMonth=${nowMonth}`
+        `${process.env.REACT_APP_SERVER_URL}/api/ulsanFestival?nowMonth=${nowMonth}`
     );
     return data;
 };
