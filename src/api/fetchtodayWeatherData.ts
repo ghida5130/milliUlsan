@@ -6,7 +6,9 @@ interface TodayWeatherDataProps {
 }
 
 const FetchTodayWeatherData = async (): Promise<TodayWeatherDataProps[]> => {
-    const { data } = await axios.get<TodayWeatherDataProps[]>(`http://175.215.254.39:5000/api/kmaWeather/today`);
+    const { data } = await axios.get<TodayWeatherDataProps[]>(
+        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/kmaWeather/today`
+    );
     return data;
 };
 

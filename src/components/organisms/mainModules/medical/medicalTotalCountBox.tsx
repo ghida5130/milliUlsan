@@ -17,7 +17,7 @@ export default function MedicalTotalCountBox({ medicalTotalCount }: MedicalTotal
         >
             <ContentArea>
                 <Text.S4>총 병원 수</Text.S4>
-                <Text.S6>{medicalTotalCount ? medicalTotalCount : "1401"}개</Text.S6>
+                <Text.S6>{medicalTotalCount === 0 ? 0 : medicalTotalCount ? medicalTotalCount : "1401"}개</Text.S6>
             </ContentArea>
         </ActiveGlass>
     );

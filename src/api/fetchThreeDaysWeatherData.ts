@@ -7,7 +7,7 @@ interface ThreeDaysWeatherDataProps {
 
 const FetchThreeDaysWeatherData = async (): Promise<ThreeDaysWeatherDataProps[]> => {
     const { data } = await axios.get<ThreeDaysWeatherDataProps[]>(
-        `http://175.215.254.39:5000/api/kmaWeather/threeDays`
+        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/kmaWeather/threeDays`
     );
     return data;
 };

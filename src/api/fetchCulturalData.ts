@@ -8,7 +8,9 @@ interface FestivalData {
 type FestivalDataProps = FestivalData[];
 
 const FetchCulturalData = async (): Promise<FestivalDataProps> => {
-    const { data } = await axios.get<FestivalDataProps>(`http://175.215.254.39:5000/api/ulsanCultural`);
+    const { data } = await axios.get<FestivalDataProps>(
+        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/ulsanCultural`
+    );
     return data;
 };
 

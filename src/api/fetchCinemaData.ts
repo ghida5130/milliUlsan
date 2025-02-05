@@ -12,7 +12,10 @@ interface CinemaDataProps {
 type CinemaDataResponse = CinemaDataProps[];
 
 const FetchCinemaData = async ({ city = "북구" }: FetchCinemaDataProps): Promise<CinemaDataResponse> => {
-    const { data } = await axios.get<CinemaDataResponse>(`http://175.215.254.39:5000/api/ulsanCinema?city=${city}`);
+    const { data } = await axios.get<CinemaDataResponse>(
+        `${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api/ulsanCinema?city=${city}`
+    );
+    console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}`);
     return data;
 };
 

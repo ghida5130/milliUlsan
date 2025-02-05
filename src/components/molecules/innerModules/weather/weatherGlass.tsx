@@ -21,7 +21,7 @@ export default function WeatherGlass({ weatherIcon, weatherStatus, nowTemp, feel
                         width="40%"
                         style={{ transform: "scale(180%)" }}
                     />
-                    <Text.S5>{weatherStatus}</Text.S5>
+                    <Text.S5 style={{ maxWidth: "80%" }}>{weatherStatus}</Text.S5>
                     <div style={{ display: "flex", width: "100%", justifyContent: "space-evenly" }}>
                         <div>
                             <Text.S1>현재 온도</Text.S1>

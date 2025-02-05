@@ -35,9 +35,6 @@ export default function NavigationMenu({ active }: NavigationMenuProps): JSX.Ele
                 <li>
                     <NavLink destination="/cinema" label="영화관" isActive={pathName === "/cinema"} />
                 </li>
-                <li>
-                    <NavLink destination="/test" label="기타" isActive={pathName === "/test"} />
-                </li>
             </HeaderUl>
         </nav>
     );
