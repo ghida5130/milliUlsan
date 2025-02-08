@@ -22,7 +22,6 @@ export default function LinkIconBox({ link, src }: LinkIconBoxProps): JSX.Elemen
         >
             <ContentArea>
                 <Image src={src} alt="" width="100%" />
-                ㅁㅇㄴㄻㅎㅁㄹㅇㅎㅁㅇㅀㅁㅇㄹ
             </ContentArea>
         </Area>
     );
