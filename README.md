@@ -2,7 +2,7 @@
 
 <div align="center">
 <br>
-<img width="350" alt="millivie logo" src="./public/mdImage/main.png">
+<img width="500" alt="millivie logo" src="./public/mdImage/main.png">
 <br>
 <br>
 <!-- react -->
