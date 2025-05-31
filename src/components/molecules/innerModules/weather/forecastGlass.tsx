@@ -14,7 +14,6 @@ interface fetchData {
 
 export default function ForecastGlass({ title, data }: ForecastGlassProps): JSX.Element {
     const arr = Array.from({ length: 10 }, (_, i) => i + 1);
-    console.log(data);
     return (
         <>
             <Glass row="2">

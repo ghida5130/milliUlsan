@@ -61,7 +61,6 @@ const Background = styled.div<{ theme: ThemeType; $BackgroundImageUrl?: string; 
         ${({ $userTheme }) => ($userTheme === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)")};
 
     &:hover {
-        /* transform: scale(1); */
         box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.3);
         border: 1px solid
             ${({ $userTheme }) => ($userTheme === "light" ? "rgba(255, 255, 255, 1)" : "rgba(0, 0, 0, 1)")};
@@ -76,11 +75,12 @@ const Background = styled.div<{ theme: ThemeType; $BackgroundImageUrl?: string; 
         right: 5px;
         bottom: 5px;
         background: url(${(props) => props.$BackgroundImageUrl}) center / cover no-repeat;
-        opacity: 0.5; /* 투명도 설정 */
+        opacity: 0.1; /* 투명도 설정 */
         z-index: -1; /* 내용보다 뒤에 배경이 위치하도록 설정 */
         transition: opacity 0.5s ease;
     }
     &:hover::before {
         opacity: 1;
+        z-index: 1;
     }
 `;

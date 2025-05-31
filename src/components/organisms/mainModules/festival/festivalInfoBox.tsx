@@ -2,6 +2,7 @@ import ActiveGlass from "../../../atoms/glass/activeGlass";
 import { Text } from "../../../../utils/constants/text";
 import styled from "styled-components";
 import useFetchFestivalImage from "../../../../api/fetchFestivalImage";
+import LoadingGlass from "../../../atoms/glass/loadingGlass";
 
 interface FestivalDataTypes {
     festivalData: {
@@ -15,8 +16,8 @@ export default function FestivalInfoBox({ festivalData }: FestivalDataTypes): JS
     const { data, error, isLoading } = useFetchFestivalImage(unqId);
 
     const renderContent = () => {
-        if (error) return <Text.S2>축제 데이터 에러</Text.S2>;
-        if (isLoading) return <Text.S2>축제 데이터 로딩 중</Text.S2>;
+        if (error) return <Text.S2>Festival Image Data Error</Text.S2>;
+        if (isLoading) return <Text.S2>Festival Image Data Loading</Text.S2>;
         return (
             <>
                 <Text.S3 style={{ height: "20%", alignSelf: "flex-start" }}>{festivalData.sggNm[0]}</Text.S3>
@@ -39,7 +40,7 @@ export default function FestivalInfoBox({ festivalData }: FestivalDataTypes): JS
     };
 
     if (error) return <div>error</div>;
-    if (isLoading) return <div>loading</div>;
+    if (isLoading) return <LoadingGlass />;
     return (
         <ActiveGlass BackgroundImageUrl={data?.data} BackgroundBlur="5px" BackgroundColorBlur="0.8">
             <ContentArea>{renderContent()}</ContentArea>
@@ -54,6 +55,5 @@ const ContentArea = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-evenly; */
     padding: 15px;
 `;

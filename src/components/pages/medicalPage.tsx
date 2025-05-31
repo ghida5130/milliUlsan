@@ -28,10 +28,6 @@ export default function MedicalPage(): JSX.Element {
         []
     );
 
-    // const debounceSearch = debounce((value: string) => {
-    //     setDebouncedKeyword(value);
-    // }, 700);
-
     useEffect(() => {
         debounceSearch(searchKeyword);
     }, [searchKeyword, debounceSearch]);
@@ -40,12 +36,6 @@ export default function MedicalPage(): JSX.Element {
         if (!data) return [];
         return data.filter((item) => item.소재지.includes(debouncedKeyword));
     }, [data, debouncedKeyword]);
-
-    // if (data) {
-    //     for (let i = 0; i < data.length; i++) {
-    //         if (data[i].소재지.includes(debouncedKeyword)) filteredData.push(data[i]);
-    //     }
-    // }
 
     if (isLoading || !data) return <Text.S3>Medical Page Loading...</Text.S3>;
     if (error) return <Text.S3>Medical Page Error</Text.S3>;
