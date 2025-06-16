@@ -6,11 +6,11 @@ interface FetchMedicalDataProps {
     category: string;
 }
 
-interface MedicalDataProps {
+export interface MedicalDataTypes {
     [key: string]: string;
 }
 
-type MedicalDataResponse = MedicalDataProps[];
+type MedicalDataResponse = MedicalDataTypes[];
 
 const FetchMedicalData = async ({
     city = "북구",

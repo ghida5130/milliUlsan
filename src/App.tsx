@@ -26,6 +26,7 @@ import TestPage from "./components/pages/test";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyles";
 import { darkTheme, lightTheme } from "./styles/theme";
+import MedicalTestPage from "./components/pages/medicalTestPage";
 
 function App() {
     const userTheme = useRecoilValue(themeState);
@@ -45,6 +46,7 @@ function App() {
                         <Route path="/medical" element={<MedicalPage />} />
                         <Route path="/culturalFacility" element={<CulturalFacilityPage />} />
                         <Route path="/cinema" element={<CinemaPage />} />
+                        <Route path="/medicalTest" element={<MedicalTestPage />} />
                     </Routes>
                 </Suspense>
             </Wrap>

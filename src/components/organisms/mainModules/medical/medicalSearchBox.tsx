@@ -1,25 +1,37 @@
 import { Text } from "../../../../utils/constants/text";
 import styled from "styled-components";
 import Glass from "../../../atoms/glass/glass";
+import { debounce } from "../../../../utils/debounce";
+import { useRef, useState, useTransition } from "react";
 
 interface MedicalSearchProps {
-    searchKeyword: string;
     setSearchKeyword: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function MedicalSearchBox({ searchKeyword, setSearchKeyword }: MedicalSearchProps): JSX.Element {
+export default function MedicalSearchBox({ setSearchKeyword }: MedicalSearchProps): JSX.Element {
+    const [inputValue, setInputValue] = useState("");
+    const [isPending, startTransition] = useTransition();
+
+    const debouncedTransition = useRef(
+        debounce((value: string) => {
+            startTransition(() => {
+                setSearchKeyword(value);
+            });
+        }, 700)
+    ).current;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        setInputValue(val);
+        debouncedTransition(val);
+    };
+
     return (
         <Glass>
             <ContentArea>
                 <Text.S3>동네명으로 검색</Text.S3>
-                <SearchBar
-                    placeholder=" 예) 삼산동"
-                    type="text"
-                    value={searchKeyword}
-                    onChange={(e) => {
-                        setSearchKeyword(e.target.value);
-                    }}
-                />
+                <SearchBar placeholder=" 예) 삼산동" value={inputValue} onChange={handleChange} />
+                <Text.S3>{isPending ? "검색중..." : "-"}</Text.S3>
             </ContentArea>
         </Glass>
     );
