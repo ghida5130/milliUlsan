@@ -20,11 +20,12 @@
 
 ## 프로젝트 간단 소개
 
--   React로 개발했으며 서버는 express.js로 개발했습니다.
--   공공데이터포털, 기상청, OpenWeatherMap의 API를 활용했습니다.
--   컴포넌트를 조립하는 형태로 메인페이지의 모듈들을 원하는 대로 빼거나 더하여 사용할 수 있습니다.
--   사용자가 선택한 지역 혹은 카테고리 종류는 Recoil로 관리했습니다.
--   styled-components로 글로벌 스타일(테마)을 관리하고 라이트/다크모드를 지원합니다.
+-   React 클라이언트 개발, Express.js 서버 개발
+-   공공데이터포털, 기상청, OpenWeatherMap API 활용
+-   Atomic Design 기반 컴포넌트 설계
+-   메모이제이션, debounce를 통한 실시간 검색기능 최적화 및 웹워커 적용
+-   BFF, cron을 활용해 프론트엔드에 맞춰 데이터 가공
+-   Recoil로 사용자가 선택한 지역, 카테고리, 테마 관리
     <br><br>
 
 ## MilliUlsan - 울산 정보 조회
