@@ -31,13 +31,15 @@ export default function MedicalPage(): JSX.Element {
     if (isLoading || !data) return <Text.S3>Medical Page Loading...</Text.S3>;
     if (error) return <Text.S3>Medical Page Error</Text.S3>;
     return (
-        <PageGridArea>
-            <MedicalFilterBox key="medicalFilterBox" />
-            <MedicalSearchBox key="medicalSearchBox" setSearchKeyword={setSearchKeyword} />
-            <MedicalTotalCountBox key="medicalTotalCountBox" medicalTotalCount={filteredData?.length} />
-            {filteredData?.map((val) => {
-                return <MedicalInfoBox key={val.의료기관명} MedicalData={val} />;
-            })}
-        </PageGridArea>
+        <>
+            <PageGridArea>
+                <MedicalFilterBox key="medicalFilterBox" />
+                <MedicalSearchBox key="medicalSearchBox" setSearchKeyword={setSearchKeyword} />
+                <MedicalTotalCountBox key="medicalTotalCountBox" medicalTotalCount={filteredData?.length} />
+                {filteredData?.map((val) => {
+                    return <MedicalInfoBox key={val.의료기관명} MedicalData={val} />;
+                })}
+            </PageGridArea>
+        </>
     );
 }

@@ -42,7 +42,7 @@ export default function FestivalInfoBox({ festivalData }: FestivalDataTypes): JS
     if (error) return <div>error</div>;
     if (isLoading) return <LoadingGlass />;
     return (
-        <ActiveGlass BackgroundImageUrl={data?.data} BackgroundBlur="5px" BackgroundColorBlur="0.8">
+        <ActiveGlass BackgroundImageUrl={data?.data}>
             <ContentArea>{renderContent()}</ContentArea>
         </ActiveGlass>
     );

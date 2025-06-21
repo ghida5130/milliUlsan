@@ -6,36 +6,36 @@ import { ThemeType } from "../../../styles/theme";
 import { useRecoilValue } from "recoil";
 import { themeState } from "../../../recoil/themeState";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface ActiveGlassProps {
     children: React.ReactNode;
     BackgroundImageUrl?: string;
-    BackgroundColorBlur?: string;
-    BackgroundBlur?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function ActiveGlass({
-    children,
-    BackgroundImageUrl,
-    BackgroundColorBlur,
-    BackgroundBlur,
-    onClick,
-}: ActiveGlassProps): JSX.Element {
+export default function ActiveGlass({ children, BackgroundImageUrl, onClick }: ActiveGlassProps): JSX.Element {
     const userTheme = useRecoilValue(themeState);
     const hasOnClick = Boolean(onClick);
+
+    // intersectionObserver 적용
+    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
     return (
         <Area
             onClick={onClick}
             $hasOnClick={hasOnClick}
             layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.3 }}
             exit={{ opacity: 0 }}
+            ref={ref}
         >
-            <Background $BackgroundImageUrl={BackgroundImageUrl} $userTheme={userTheme}>
-                {children}
-            </Background>
+            {inView ? (
+                <Background $BackgroundImageUrl={BackgroundImageUrl} $userTheme={userTheme}>
+                    {children}
+                </Background>
+            ) : null}
         </Area>
     );
 }

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { themeState } from "../../../recoil/themeState";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface GlassProps {
     children: React.ReactNode;
@@ -15,19 +16,24 @@ interface GlassProps {
 export default function Glass({ children, row, column }: GlassProps): JSX.Element {
     const userTheme = useRecoilValue(themeState);
 
+    // intersectionObserver 적용
+    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
+
     row = row ? row : "1";
     column = column ? column : "1";
 
     return (
         <GlassArea
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             $row={row}
             $column={column}
+            layout
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0 }}
+            ref={ref}
         >
-            <Background $userTheme={userTheme}>{children}</Background>
+            {inView ? <Background $userTheme={userTheme}>{children}</Background> : null}
         </GlassArea>
     );
 }
@@ -41,7 +47,6 @@ const GlassArea = styled(motion.div)<{ $row?: string; $column?: string }>`
 
 const Background = styled.div<{ $userTheme: string }>`
     position: relative;
-    /* display: flex; */
     width: 100%;
     height: 100%;
     border-radius: 20px;
