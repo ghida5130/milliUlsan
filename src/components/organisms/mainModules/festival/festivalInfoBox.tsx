@@ -33,7 +33,8 @@ export default function FestivalInfoBox({ festivalData }: FestivalDataTypes): JS
                 >
                     {festivalData.title[0]}
                 </Text.S5>
-                <Text.S2 style={{ height: "40%" }}>{festivalData.intr[0]}</Text.S2>
+                <Text.S2 style={{ height: "37%", overflow: "hidden" }}>{festivalData.intr[0]}</Text.S2>
+                <div style={{ height: "3%" }}></div>
                 <Text.S3>{festivalData.fstvlBgngYmd[0]}</Text.S3>
             </>
         );
