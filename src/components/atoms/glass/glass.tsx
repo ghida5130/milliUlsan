@@ -17,7 +17,7 @@ export default function Glass({ children, row, column }: GlassProps): JSX.Elemen
     const userTheme = useRecoilValue(themeState);
 
     // intersectionObserver 적용
-    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
+    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1, rootMargin: "10% 0px 0px 0px" });
 
     row = row ? row : "1";
     column = column ? column : "1";
@@ -27,7 +27,7 @@ export default function Glass({ children, row, column }: GlassProps): JSX.Elemen
             $row={row}
             $column={column}
             layout
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.3 }}
             exit={{ opacity: 0 }}

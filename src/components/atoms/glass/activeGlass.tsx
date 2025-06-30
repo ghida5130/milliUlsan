@@ -19,7 +19,7 @@ export default function ActiveGlass({ children, BackgroundImageUrl, onClick }: A
     const hasOnClick = Boolean(onClick);
 
     // intersectionObserver 적용
-    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
+    const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1, rootMargin: "10% 0px 0px 0px" });
     return (
         <Area
             onClick={onClick}
